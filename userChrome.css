@@ -1,0 +1,144 @@
+/* ============================================================
+   Firefox 157 / Nova
+   Native Vertical Tabs — cleaner + larger
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   MAIN SETTINGS
+   ------------------------------------------------------------ */
+
+#tabbrowser-tabs[orient="vertical"] {
+    /* Bigger click target */
+    --tab-min-height: 38px !important;
+
+    /* Space between tabs */
+    --tab-block-margin: 2px !important;
+
+    /* Less pill-shaped */
+    --tab-border-radius: 8px !important;
+
+    /* Horizontal padding inside expanded tabs */
+    --tab-inline-padding: 15px !important;
+}
+
+#tabbrowser-tabs[orient="horizontal"] {
+    /* Less pill-shaped */
+    --tab-border-radius: 8px !important;
+}
+
+/* ============================================================
+   WIDER PINNED TABS — HORIZONTAL MODE ONLY
+   ============================================================ */
+
+/* Horizontal pinned tabs: favicon only */
+#tabbrowser-tabs[orient="horizontal"]
+.tabbrowser-tab[pinned] .tab-label-container {
+    display: none !important;
+}
+
+/* Keep pinned tabs at a comfortable fixed width */
+#tabbrowser-tabs[orient="horizontal"]
+.tabbrowser-tab[pinned] {
+    min-width: 56px !important;
+    max-width: 56px !important;
+}
+
+/* Center favicon inside the wider tab */
+#tabbrowser-tabs[orient="horizontal"]
+.tabbrowser-tab[pinned] .tab-content {
+    justify-content: center !important;
+    padding-inline: 0 !important;
+}
+
+/* Optional: don't show close button on pinned tabs */
+#tabbrowser-tabs[orient="horizontal"]
+.tabbrowser-tab[pinned] .tab-close-button {
+    display: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   COLLAPSED MODE
+   Hide close button
+   ------------------------------------------------------------ */
+
+#tabbrowser-tabs[orient="vertical"]:not([expanded])
+.tabbrowser-tab .tab-close-button {
+    display: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   COLLAPSED MODE
+   Hide mute / audio overlay
+   ------------------------------------------------------------ */
+
+#tabbrowser-tabs[orient="vertical"]:not([expanded])
+.tabbrowser-tab .tab-icon-overlay:is(
+    [soundplaying],
+    [muted],
+    [activemedia-blocked]
+) {
+    display: none !important;
+}
+
+
+/* Fallback for Firefox versions/layouts that expose a separate
+   audio button instead of the icon overlay */
+#tabbrowser-tabs[orient="vertical"]:not([expanded])
+.tabbrowser-tab .tab-audio-button {
+    display: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   SLIGHTLY LARGER FAVICONS
+   Firefox default is roughly 16px.
+   18px looks good with 42px tabs.
+   ------------------------------------------------------------ */
+
+#tabbrowser-tabs[orient="vertical"]
+.tabbrowser-tab .tab-icon-image {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+
+/* ------------------------------------------------------------
+   CLEANER HOVER
+   Keep Nova's colors, just make the whole tab react clearly.
+   ------------------------------------------------------------ */
+
+#tabbrowser-tabs[orient="vertical"]
+.tabbrowser-tab:hover .tab-background {
+    background-color:
+        color-mix(in srgb, currentColor 9%, transparent) !important;
+}
+
+
+/* ------------------------------------------------------------
+   SELECTED TAB
+   Slightly stronger distinction without changing theme colors.
+   ------------------------------------------------------------ */
+
+#tabbrowser-tabs[orient="vertical"]
+.tabbrowser-tab[selected] .tab-background {
+    outline: 1px solid
+        color-mix(in srgb, currentColor 12%, transparent) !important;
+
+    outline-offset: -1px !important;
+}
+
+
+/* ------------------------------------------------------------
+   OPTIONAL:
+   Give collapsed tabs a little more breathing room.
+   Uncomment if you like it.
+   ------------------------------------------------------------ */
+/*
+#tabbrowser-tabs[orient="vertical"]:not([expanded])
+.tabbrowser-tab {
+    margin-block: 1px !important;
+}
+*/
